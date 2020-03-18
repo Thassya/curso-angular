@@ -5,10 +5,14 @@ import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
 import { AuthGuard } from './guard/auth.guard';
 import { CursosGuard } from './guard/cursos.guard';
-import { AlunosGuard } from './guard/alunos.guard';
 import { PaginaNaoEncontradaComponent } from './pagina-nao-encontrada/pagina-nao-encontrada.component';
+import { FormDrivenComponent } from './form-driven/form-driven.component';
 
 const routes: Routes = [
+  {
+    path: 'driven',
+    component: FormDrivenComponent
+  },
   {
     path: 'cursos',
     loadChildren: () => import('./cursos/cursos.module').then(m => m.CursosModule),  //lazyloading
@@ -26,9 +30,9 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   {
     path: 'home', component: HomeComponent,
-    canActivate: [AuthGuard]
+    // canActivate: [AuthGuard]
   },
-  { path: '', redirectTo: '/home', pathMatch: 'full' },
+  { path: '', redirectTo: '/driven', pathMatch: 'full' },
   { path: '**', component: PaginaNaoEncontradaComponent }
 ];
 

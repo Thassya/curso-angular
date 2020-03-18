@@ -6,11 +6,10 @@
       <li routerLinkActive="active"><a [routerLink]="['/cursos']" [queryParams]="{pagina:1}">Cursos</a></li>
       <!-- <li routerLinkActive="active"><a [routerLink]="['cursos', idCurso.value]">Curso com Id</a></li> -->
       <li *ngIf="monstrarMenu" routerLinkActive="active"><a [routerLink]="['/alunos']">Alunos</a></li>
+      <li routerLinkActive="active"><a [routerLink]="['/driven']">Form Driven</a></li>
     </ul>
   </div>
 </nav>
 <div class="container">
-  <!-- <p>Entre com o id do curso</p> -->
-  <!-- <input #idCurso> -->
   <router-outlet></router-outlet>
 </div>
