@@ -6,13 +6,13 @@ import { LoginComponent } from './login/login.component';
 import { AuthGuard } from './guard/auth.guard';
 import { CursosGuard } from './guard/cursos.guard';
 import { PaginaNaoEncontradaComponent } from './pagina-nao-encontrada/pagina-nao-encontrada.component';
-import { FormDrivenComponent } from './form-driven/form-driven.component';
+
 
 const routes: Routes = [
-  {
-    path: 'driven',
-    component: FormDrivenComponent
-  },
+  // {
+  //   path: 'driven',
+  //   component: FormDrivenComponent
+  // },
   {
     path: 'cursos',
     loadChildren: () => import('./cursos/cursos.module').then(m => m.CursosModule),  //lazyloading
