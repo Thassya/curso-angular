@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Subscription } from 'rxjs';
+import { Subscription, Observable } from 'rxjs';
 
 import { CursosService } from './cursos.service';
 import { Curso } from './curso';
@@ -13,7 +13,9 @@ import { Curso } from './curso';
 })
 export class CursosComponent implements OnInit {
 
-  cursos: Curso[];
+  // cursos: Curso[];
+  cursos$: Observable<Curso[]>;
+
   // pagina: number;
   // inscricao: Subscription;
 
@@ -24,7 +26,9 @@ export class CursosComponent implements OnInit {
     ) { }
 
   ngOnInit(): void {
-    this.service.list().subscribe(dados => this.cursos = dados);
+    // this.service.list()
+    // .subscribe(dados => this.cursos = dados);
+    this.cursos$ = this.service.list(); //com o pipeAsync nao precisa se preocupar em inscrever e desisncrever.. o angular cuida disso. 
     // this.cursos = this.cursosService.getCursos();
 
     // this.inscricao = this.route.queryParams.subscribe(

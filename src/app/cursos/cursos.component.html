@@ -4,32 +4,35 @@
       <div class="card-content white-text">
         <span class="card-title">Cursos</span>
         <!-- <p> -->
-          <table class="responsive-table">
-            <thead>
-              <tr>
-                  <th>#</th>
-                  <th>Curso</th>
-                  <th></th>
-              </tr>
-            </thead>    
-            <tbody>
-              <tr *ngFor="let curso of cursos">
-                <td>{{ curso.id }}</td>
-                <td>{{ curso.nome }}</td>
-                <td>
-                  <a href="#" class="btn-floating btn-small blue accent-3"><i class="material-icons">create</i></a>{{' '}}
-                  <a href="#" class="btn-floating btn-small red"><i class="material-icons">highlight_off</i></a>
-                </td>
-              </tr>              
-            </tbody>
-          </table>
+        <table class="responsive-table" *ngIf="cursos$ | async as cursos; else loading">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Curso</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let curso of cursos">
+              <td>{{ curso.id }}</td>
+              <td>{{ curso.nome }}</td>
+              <td>
+                <a href="#" class="btn-floating btn-small blue accent-3"><i class="material-icons">create</i></a>{{' '}}
+                <a href="#" class="btn-floating btn-small red"><i class="material-icons">highlight_off</i></a>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <ng-template #loading>
+          <span>Carregando cursos ... </span>
+        </ng-template>
         <!-- </p> -->
       </div>
       <div class="card-action">
         <a [routerLink]="['novo']" class="waves-effect waves-light btn-small">
           <i class="material-icons left">add_circle_outline</i>
           Novo Curso</a>
-        
+
       </div>
     </div>
   </div>
