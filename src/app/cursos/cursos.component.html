@@ -1,8 +1,44 @@
-<p>Lista de Cursos</p>
+<div class="row">
+  <div class="col s12 m8">
+    <div class="card teal lighten-2">
+      <div class="card-content white-text">
+        <span class="card-title">Cursos</span>
+        <!-- <p> -->
+          <table class="responsive-table">
+            <thead>
+              <tr>
+                  <th>#</th>
+                  <th>Curso</th>
+                  <th></th>
+              </tr>
+            </thead>    
+            <tbody>
+              <tr *ngFor="let curso of cursos">
+                <td>{{ curso.id }}</td>
+                <td>{{ curso.nome }}</td>
+                <td>
+                  <a href="#" class="btn-floating btn-small blue accent-3"><i class="material-icons">create</i></a>{{' '}}
+                  <a href="#" class="btn-floating btn-small red"><i class="material-icons">highlight_off</i></a>
+                </td>
+              </tr>              
+            </tbody>
+          </table>
+        <!-- </p> -->
+      </div>
+      <div class="card-action">
+        <a [routerLink]="['novo']" class="waves-effect waves-light btn-small">
+          <i class="material-icons left">add_circle_outline</i>
+          Novo Curso</a>
+        
+      </div>
+    </div>
+  </div>
+</div>
+<!-- <p>Lista de Cursos</p>
 <p>Página: {{ pagina }}</p>
 <div class="collection">
     <a [routerLink]="['/cursos', curso.id]" class="collection-item" routerLinkActive="active"  
     *ngFor="let curso of cursos"
     >{{ curso.nome }}</a>
   </div>
-  <button (click)="proximaPagina()">Próxima</button>
+  <button (click)="proximaPagina()">Próxima</button> -->

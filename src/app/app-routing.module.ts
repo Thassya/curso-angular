@@ -16,9 +16,9 @@ const routes: Routes = [
   {
     path: 'cursos',
     loadChildren: () => import('./cursos/cursos.module').then(m => m.CursosModule),  //lazyloading
-    canActivate: [AuthGuard],
-    canActivateChild: [CursosGuard],
-    canLoad: [AuthGuard]
+    // canActivate: [AuthGuard],
+    // canActivateChild: [CursosGuard],
+    // canLoad: [AuthGuard]
   },
   {
     path: 'alunos',
@@ -32,7 +32,7 @@ const routes: Routes = [
     path: 'home', component: HomeComponent,
     // canActivate: [AuthGuard]
   },
-  { path: '', redirectTo: '/driven', pathMatch: 'full' },
+  { path: '', redirectTo: '/cursos', pathMatch: 'full' },
   { path: '**', component: PaginaNaoEncontradaComponent }
 ];
 
