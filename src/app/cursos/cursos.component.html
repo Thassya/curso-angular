@@ -4,7 +4,7 @@
       <div class="card-content white-text">
         <span class="card-title">Cursos</span>
         <!-- <p> -->
-        <table class="responsive-table" *ngIf="cursos$ | async as cursos; else loading">
+        <table class="responsive-table" *ngIf="cursos$ | async as cursos; else loadingError">
           <thead>
             <tr>
               <th>#</th>
@@ -23,8 +23,14 @@
             </tr>
           </tbody>
         </table>
+        <ng-template #loadingError>
+          <div *ngIf="error$ | async; else loading">
+            Erro ao carregar cursos. Tente novamente mais tarde.
+          </div>
         <ng-template #loading>
           <span>Carregando cursos ... </span>
+        </ng-template>
+         
         </ng-template>
         <!-- </p> -->
       </div>
@@ -33,6 +39,9 @@
           <i class="material-icons left">add_circle_outline</i>
           Novo Curso</a>
 
+          <a (click)="onRefresh()" class="waves-effect waves-light btn-small">
+            <i class="material-icons left">autorenew</i>
+            Atualizar</a>
       </div>
     </div>
   </div>

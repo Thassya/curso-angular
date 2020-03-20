@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Subscription, Observable } from 'rxjs';
+import { Observable, empty, Subject } from 'rxjs';
+import { catchError, retry } from 'rxjs/operators';
 
 import { CursosService } from './cursos.service';
 import { Curso } from './curso';
@@ -13,8 +14,9 @@ import { Curso } from './curso';
 })
 export class CursosComponent implements OnInit {
 
-  // cursos: Curso[];
+  '  // cursos: Curso[];'
   cursos$: Observable<Curso[]>;
+  error$ = new Subject<boolean>();
 
   // pagina: number;
   // inscricao: Subscription;
@@ -23,12 +25,11 @@ export class CursosComponent implements OnInit {
     private service: CursosService,
     private route: ActivatedRoute,
     private router: Router
-    ) { }
+  ) { }
 
   ngOnInit(): void {
     // this.service.list()
     // .subscribe(dados => this.cursos = dados);
-    this.cursos$ = this.service.list(); //com o pipeAsync nao precisa se preocupar em inscrever e desisncrever.. o angular cuida disso. 
     // this.cursos = this.cursosService.getCursos();
 
     // this.inscricao = this.route.queryParams.subscribe(
@@ -36,13 +37,30 @@ export class CursosComponent implements OnInit {
     //     this.pagina = queryParams['pagina'];
     //   }
     // )
+    this.onRefresh();
   }
-  ngOnDestoroy(){
+
+  onRefresh() {
+    this.cursos$ = this.service.list() //com o pipeAsync nao precisa se preocupar em inscrever e desisncrever.. o angular cuida disso. 
+      .pipe(
+        // map(),
+        // tap(),
+        // switchMap(),
+        catchError(error => {
+          console.error(error);
+          this.error$.next(true);
+          return empty();
+        })
+      );
+  }
+
+
+  ngOnDestoroy() {
     // this.inscricao.unsubscribe();
 
   }
 
-  proximaPagina(){
+  proximaPagina() {
     // this.router.navigate(['/cursos'], {queryParams:{'pagina': ++this.pagina}});
   }
 
