@@ -2,28 +2,59 @@
     <strong>Inserir Curso</strong>
 </div> -->
 <div class="row">
-    <form class="col s12 longeMenu" [formGroup]="form">
-        <div class="row">
-            <div class="input-field col s12">
-                <input id="nome" type="text" class="validate" [ngClass]="{ 'invalid': submitted && hasError('nome')}">
-                <label for="nome">Nome do Curso</label>
-                
-                    <span class="helper-text" *ngIf="hasError('nome') && hasError('nome')['required']"
-                     data-error="wrong" data-success="right">Por favor informe o nome para o
-                        curso!</span>
-                        <span class="helper-text" *ngIf="hasError('nome') && hasError('nome')['minlength']"
-                     data-error="wrong" data-success="right">Nome precisa ter no mínimo {{ hasError('nome')['minlength'].requiredLength }} caracteres. </span>
-                        <span class="helper-text" *ngIf="hasError('nome') && hasError('nome')['maxlength']"
-                     data-error="wrong" data-success="right">Nome precisa ter no máximo {{ hasError('nome')['maxlength'].requiredLength }} caracteres. </span>
-                
-            </div>
-        </div>
-        <div>
-            <button class="btn waves-effect waves-light" type="submit" (click)="onSubmit()">Submit
-                <i class="material-icons right">send</i>
-            </button>{{ ' '}}
-            <button class="btn waves-effect waves-light" type="button" (click)="onCancel()">Cancelar
-            </button>
-        </div>
-    </form>
+  <form class="col s12 longeMenu" [formGroup]="form">
+    <div class="row">
+      <div class="input-field col s12">
+        <input
+          id="nome"
+          type="text"
+          class="validate"
+          [ngClass]="{ invalid: submitted && hasError('nome') }"
+          formControlName="nome" 
+        />
+        <label for="nome">Nome do Curso</label>
+
+        <span
+          class="helper-text"
+          *ngIf="hasError('nome') && hasError('nome')['required']"
+          data-error="wrong"
+          data-success="right"
+          >Por favor informe o nome para o curso!</span
+        >
+        <span
+          class="helper-text"
+          *ngIf="hasError('nome') && hasError('nome')['minlength']"
+          data-error="wrong"
+          data-success="right"
+          >Nome precisa ter no mínimo
+          {{ hasError("nome")["minlength"].requiredLength }} caracteres.
+        </span>
+        <span
+          class="helper-text"
+          *ngIf="hasError('nome') && hasError('nome')['maxlength']"
+          data-error="wrong"
+          data-success="right"
+          >Nome precisa ter no máximo
+          {{ hasError("nome")["maxlength"].requiredLength }} caracteres.
+        </span>
+      </div>
+    </div>
+    <div>
+      <button
+        class="btn waves-effect waves-light"
+        type="submit"
+        (click)="onSubmit()"
+      >
+        Submit
+        <i class="material-icons right">send</i></button
+      >{{ " " }}
+      <button
+        class="btn waves-effect waves-light"
+        type="button"
+        (click)="onCancel()"
+      >
+        Cancelar
+      </button>
+    </div>
+  </form>
 </div>

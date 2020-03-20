@@ -1,25 +1,26 @@
-import { Injectable } from '@angular/core';
-import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
-import { AlertModalComponent } from './../shared/alert-modal/alert-modal.component';
+import { Injectable } from "@angular/core";
+import { BsModalRef, BsModalService } from "ngx-bootstrap/modal";
+import { AlertModalComponent } from "./../shared/alert-modal/alert-modal.component";
 
-enum AlertTypes{
-  DANGER = 'danger',
-  SUCCESS = 'sucess'
+enum AlertTypes {
+  DANGER = "danger",
+  SUCCESS = "sucess"
 }
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: "root"
 })
 export class AlertModalService {
+  constructor(private modalService: BsModalService) {}
 
-  constructor(
-    private modalService: BsModalService
-  ) { }
-
-  private showAlert(mensagem: string, type: string){
+  private showAlert(mensagem: string, type: string, dismissTimout?: number) {
     const bsModalRef: BsModalRef = this.modalService.show(AlertModalComponent);
     bsModalRef.content.type = type;
     bsModalRef.content.message = mensagem;
+
+    if (dismissTimout) {
+      setTimeout(() => bsModalRef.hide(), dismissTimout);
+    }
   }
   showAlertDanger(mensagem: string) {
     this.showAlert(mensagem, AlertTypes.DANGER);
