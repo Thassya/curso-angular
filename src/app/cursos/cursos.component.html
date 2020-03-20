@@ -17,7 +17,7 @@
               <td>{{ curso.id }}</td>
               <td>{{ curso.nome }}</td>
               <td>
-                <a [routerLink]="['editar', curso.id ]" class="btn-floating btn-small blue accent-3"><i class="material-icons">create</i></a>{{' '}}
+                <a (click)="onEdit(curso.id)" class="btn-floating btn-small blue accent-3"><i class="material-icons">create</i></a>{{' '}}
                 <a [routerLink]="['excluir']" class="btn-floating btn-small red"><i class="material-icons">highlight_off</i></a>
               </td>
             </tr>

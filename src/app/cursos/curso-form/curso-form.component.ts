@@ -4,6 +4,7 @@ import { Location } from "@angular/common";
 
 import { AlertModalService } from "./../../shared/alert-modal.service";
 import { CursosService } from "./../cursos.service";
+import { ActivatedRoute } from "@angular/router";
 
 @Component({
   selector: "app-curso-form",
@@ -18,11 +19,21 @@ export class CursoFormComponent implements OnInit {
     private fb: FormBuilder,
     private servico: CursosService,
     private modal: AlertModalService,
-    private localtion: Location
+    private localtion: Location,
+    private route: ActivatedRoute
   ) {}
 
   ngOnInit(): void {
+    this.route.params.subscribe((params: any) => {
+      const id = params["id"];
+      const curso$ = this.servico.loadByID(id);
+      curso$.subscribe(curso => {
+        this.updateForm(curso);
+      });
+    });
+
     this.form = this.fb.group({
+      id: [null],
       nome: [
         null,
         [
@@ -36,6 +47,13 @@ export class CursoFormComponent implements OnInit {
 
   hasError(field: string) {
     return this.form.get(field).errors;
+  }
+
+  updateForm(curso) {
+    this.form.patchValue({
+      id: curso.id,
+      nome: curso.nome
+    });
   }
 
   onSubmit() {
