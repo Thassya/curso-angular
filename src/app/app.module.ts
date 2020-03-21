@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
-// import { HttpModule } from '@angular/http';
+import { HttpClientModule } from '@angular/common/http'; 
 // import { MaterializeModule } from "angular2-materialize";
 import { ModalModule } from 'ngx-bootstrap/modal';
 import { SharedModule } from './shared/shared.module';
@@ -31,7 +31,7 @@ import { PaginaNaoEncontradaComponent } from './pagina-nao-encontrada/pagina-nao
     // MaterializeModule,
     ModalModule.forRoot(),
     SharedModule,
-    // HttpModule,
+    HttpClientModule,
     // CursosModule,
     // AlunosModule,
     AppRoutingModule

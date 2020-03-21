@@ -15,7 +15,7 @@ import { CursoFormComponent } from './curso-form/curso-form.component';
     imports: [
         CommonModule,
         CursosRoutingModule,
-        HttpClientModule  ,
+        HttpClientModule,
         ReactiveFormsModule
     ],
     exports: [],
