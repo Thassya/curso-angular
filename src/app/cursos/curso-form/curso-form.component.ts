@@ -5,6 +5,7 @@ import { Location } from "@angular/common";
 import { AlertModalService } from "./../../shared/alert-modal.service";
 import { CursosService } from "./../cursos.service";
 import { ActivatedRoute } from "@angular/router";
+import { map, switchMap } from "rxjs/operators";
 
 @Component({
   selector: "app-curso-form",
@@ -24,13 +25,18 @@ export class CursoFormComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.route.params.subscribe((params: any) => {
-      const id = params["id"];
-      const curso$ = this.servico.loadByID(id);
-      curso$.subscribe(curso => {
-        this.updateForm(curso);
-      });
-    });
+    this.route.params
+    .pipe(
+      map((params: any) => params["id"]),
+      switchMap(id => this.servico.loadByID(id)),
+      // switchMap(cursos => obterAulas)
+      )
+      .subscribe(curso => 
+        this.updateForm(curso));
+
+        // concatMap -> oridem da requisicao importa
+        // mergeMap -> nao importa a ordem 
+        // exhaustMap -> faz uma requisicao e espera a respota... faz segunda e espera a respota (comum em login)
 
     this.form = this.fb.group({
       id: [null],
