@@ -14,7 +14,7 @@ export class UploadFileComponent implements OnInit, OnDestroy {
   progress: number = 0;
 
   constructor(private service: UploadFileService) { }
- 
+
 
   ngOnInit(): void {
   }
@@ -26,19 +26,19 @@ export class UploadFileComponent implements OnInit, OnDestroy {
     console.log(event);
     const selectedFiles = <FileList>event.srcElement.files;
 
-    const fileNames =[];
+    const fileNames = [];
     this.files = new Set();
-    for(let i=0; i< selectedFiles.length;i++){
+    for (let i = 0; i < selectedFiles.length; i++) {
       fileNames.push(selectedFiles[i].name);
       this.files.add(selectedFiles[i]);
     }
     document.getElementById('customFileLabel').innerHTML =
-    fileNames.join(', ');
+      fileNames.join(', ');
     this.progress = 0;
   }
 
-  onUpload(){
-    if(this.files && this.files.size > 0){
+  onUpload() {
+    if (this.files && this.files.size > 0) {
       this.service.upload(this.files, '/api/upload').pipe(
         uploadProgress(progress => {
           console.log(progress)
@@ -47,7 +47,7 @@ export class UploadFileComponent implements OnInit, OnDestroy {
         filterResponse()
       ).subscribe(response => console.log('upload conlcuido'));
       // .subscribe((event: HttpEvent<Object>) => {
-        
+
       //   if(event.type == HttpEventType.Response){
       //     console.log('upload concluido');
       //   }
@@ -59,5 +59,18 @@ export class UploadFileComponent implements OnInit, OnDestroy {
       // });
 
     }
+  }
+
+  onDownloadExcel() {
+    this.service.download('/api/downloadExcel')
+      .subscribe((res: any) => {
+        this.service.handleFile(res, "nomePersonalizado");
+
+      });
+  }
+  onDownloadPDF() {
+    this.service.download('/api/downloadPDF')
+      .subscribe((res: any) => this.service.handleFile(res, "nomePersonalizado"));
+
   }
 }

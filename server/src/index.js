@@ -21,6 +21,13 @@ app.post('/upload', multipartMiddleware, (req,res)=>{
     res.json({ mensage: files });
 });
 
+app.get('/downloadExcel', (req,res)=>{
+    res.download('./uploads/thassya.xlsx');
+});
+app.get('/downloadPDF', (req,res)=>{
+    res.download('./uploads/ThassyaAbreu.pdf');
+});
+
 app.use((err,req,res,next)=> res.json({error: err.mensage}));
 
 app.listen(8000, () => { console.log("listening on http://localhost:8000") });
