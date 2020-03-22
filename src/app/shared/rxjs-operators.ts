@@ -10,10 +10,10 @@ export function filterResponse<T>(){
     );
 }
 
-export function uploadProgress<T>(callback: (progress: number) => void){
+export function uploadProgress<T>(cb: (progress: number) => void){
     return tap((event: HttpEvent<T>) => {
         if(event.type == HttpEventType.UploadProgress){
-            callback(Math.round((event.loaded * 100)/event.total));
+            cb(Math.round((event.loaded * 100)/event.total));
         }
     });
 }

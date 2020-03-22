@@ -15,8 +15,6 @@ import { AuthGuard } from './guard/auth.guard'; //coloquei só pq sim
 import { CursosGuard } from './guard/cursos.guard';
 import { PaginaNaoEncontradaComponent } from './pagina-nao-encontrada/pagina-nao-encontrada.component';
 
-
-
 @NgModule({
   declarations: [
     AppComponent,    

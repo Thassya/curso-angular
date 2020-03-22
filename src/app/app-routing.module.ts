@@ -25,6 +25,10 @@ const routes: Routes = [
     loadChildren: () => import('./upload-file/upload-file.module').then(m => m.UploadFileModule),  //lazyloading
   },
   {
+    path: 'busca-reativa',
+    loadChildren: () => import('./reactive-search/reactive-search.module').then(m => m.ReactiveSearchModule),  //lazyloading
+  },
+  {
     path: 'alunos',
     loadChildren: () => import('./alunos/alunos.module').then(m => m.AlunosModule),
     canActivate: [AuthGuard],
@@ -36,7 +40,7 @@ const routes: Routes = [
     path: 'home', component: HomeComponent,
     // canActivate: [AuthGuard]
   },
-  { path: '', redirectTo: '/upload', pathMatch: 'full' },
+  { path: '', redirectTo: '/busca-reativa', pathMatch: 'full' },
   { path: '**', component: PaginaNaoEncontradaComponent }
 ];
 

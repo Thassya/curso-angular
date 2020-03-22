@@ -19,7 +19,7 @@ export class UploadFileComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
   }
   ngOnDestroy(): void {
-    throw new Error("Method not implemented.");
+    
   }
 
   onChange(event) {
