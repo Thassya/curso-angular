@@ -21,6 +21,10 @@ const routes: Routes = [
     // canLoad: [AuthGuard]
   },
   {
+    path: 'upload',
+    loadChildren: () => import('./upload-file/upload-file.module').then(m => m.UploadFileModule),  //lazyloading
+  },
+  {
     path: 'alunos',
     loadChildren: () => import('./alunos/alunos.module').then(m => m.AlunosModule),
     canActivate: [AuthGuard],
@@ -32,7 +36,7 @@ const routes: Routes = [
     path: 'home', component: HomeComponent,
     // canActivate: [AuthGuard]
   },
-  { path: '', redirectTo: '/cursos', pathMatch: 'full' },
+  { path: '', redirectTo: '/upload', pathMatch: 'full' },
   { path: '**', component: PaginaNaoEncontradaComponent }
 ];
 

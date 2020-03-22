@@ -1,15 +1,48 @@
-<nav>
+<!-- MATERIALIZE  -->
+<!-- <nav>
   <div class="nav-wrapper">
     <a [routerLink]="['/']" class="brand-logo right">Logo</a>
     <ul id="nav-mobile" class="left hide-on-med-and-down">
       <li routerLinkActive="active"><a [routerLink]="['/login']">Login</a></li>
       <li routerLinkActive="active"><a [routerLink]="['/cursos']" [queryParams]="{pagina:1}">Cursos</a></li>
-      <!-- <li routerLinkActive="active"><a [routerLink]="['cursos', idCurso.value]">Curso com Id</a></li> -->
+      // <li routerLinkActive="active"><a [routerLink]="['cursos', idCurso.value]">Curso com Id</a></li> 
       <li *ngIf="monstrarMenu" routerLinkActive="active"><a [routerLink]="['/alunos']">Alunos</a></li>
       <li routerLinkActive="active"><a [routerLink]="['/driven']">Form Driven</a></li>
+      <li routerLinkActive="active"><a [routerLink]="['/upload']">Upload Arquivo</a></li>
+    </ul>
+  </div>
+</nav> -->
+
+<!-- BOOTSTRAP -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+  <a class="navbar-brand" [routerLink]="['/']">Logo</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" 
+  data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNav">
+    <ul class="navbar-nav">
+      <li class="nav-item" routerLinkActive="active">
+        <a class="nav-link" [routerLink]="['/login']">Login </a>
+      </li>
+      <li class="nav-item" routerLinkActive="active">
+        <a class="nav-link" [routerLink]="['/cursos']"  [queryParams]="{pagina:1}">Cursos</a>
+      </li>
+      <li class="nav-item" routerLinkActive="active">
+        <a class="nav-link" [routerLink]="['/alunos']">Alunos</a>
+      </li>
+      <li class="nav-item" routerLinkActive="active">
+        <a class="nav-link" [routerLink]="['/driven']">Form Driven</a>
+      </li>
+      <li class="nav-item" routerLinkActive="active">
+        <a class="nav-link" [routerLink]="['/upload']">Upload Arquivo</a>
+      </li>
     </ul>
   </div>
 </nav>
+
 <div class="container">
   <router-outlet></router-outlet>
 </div>
+
+
