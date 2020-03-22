@@ -12,4 +12,15 @@ export class UploadFileComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  onChange(event) {
+    console.log(event);
+    const selectedFiles = <FileList>event.srcElement.files;
+
+    const fileNames =[];
+    for(let i=0; i< selectedFiles.length;i++){
+      fileNames.push(selectedFiles[i].name);
+    }
+    document.getElementById('customFileLabel').innerHTML =
+    fileNames.join(', ');
+  }
 }
