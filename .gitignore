@@ -48,3 +48,5 @@ Thumbs.db
 # node
 /server/node_modules
 /server/uploads
+
+.vscode/launch.json
